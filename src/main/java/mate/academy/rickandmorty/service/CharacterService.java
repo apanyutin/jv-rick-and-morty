@@ -12,4 +12,6 @@ public interface CharacterService {
     CharacterDto getById(Long id);
 
     List<CharacterDto> findAllByName(String name);
+
+    CharacterDto getRandomCharacter();
 }

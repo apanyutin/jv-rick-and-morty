@@ -28,20 +28,17 @@ public class RickandmortyapiClient {
                         .GET()
                         .uri(URI.create(url))
                         .build();
-                HttpResponse<String> response = httpClient.send(
-                        httpRequest,
+                HttpResponse<String> response = httpClient.send(httpRequest,
                         HttpResponse.BodyHandlers.ofString());
-                RickandmortyapiResponseDataDto dataDto = objectMapper.readValue(
-                        response.body(),
+                RickandmortyapiResponseDataDto dataDto = objectMapper.readValue(response.body(),
                         RickandmortyapiResponseDataDto.class);
+
                 characters.addAll(dataDto.getResults());
                 url = dataDto.getInfo().next();
             }
         } catch (IOException | InterruptedException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("can't get data from client", e);
         }
-        System.out.println(characters);
-
         return characters;
     }
 }

@@ -44,4 +44,10 @@ public class CharacterServiceImpl implements CharacterService {
                 .map(characterMapper::toDto)
                 .toList();
     }
+
+    @Override
+    public CharacterDto getRandomCharacter() {
+        Long randomNumber = (long) (Math.random() * characterRepository.count());
+        return getById(randomNumber);
+    }
 }

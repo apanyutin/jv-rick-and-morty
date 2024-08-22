@@ -15,10 +15,7 @@ public class RickandmortyapiController {
 
     @GetMapping("/random")
     public CharacterDto getRandomCharacter() {
-        int numberDbRecords = characterService.getAll().size();
-        Long randomNumber = (long) (Math.random() * numberDbRecords);
-
-        return characterService.getById(randomNumber);
+        return characterService.getRandomCharacter();
     }
 
     @GetMapping("/search/{name}")
