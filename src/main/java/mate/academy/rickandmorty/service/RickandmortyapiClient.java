@@ -37,7 +37,7 @@ public class RickandmortyapiClient {
                 url = dataDto.getInfo().next();
             }
         } catch (IOException | InterruptedException e) {
-            throw new RuntimeException("can't get data from client", e);
+            throw new RuntimeException("Can't get data from client", e);
         }
         return characters;
     }

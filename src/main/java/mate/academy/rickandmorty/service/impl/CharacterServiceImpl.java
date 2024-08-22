@@ -1,5 +1,6 @@
 package mate.academy.rickandmorty.service.impl;
 
+import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import mate.academy.rickandmorty.dto.external.RickandmortyapiCharacterDto;
@@ -34,7 +35,7 @@ public class CharacterServiceImpl implements CharacterService {
     @Override
     public CharacterDto getById(Long id) {
         Character character = characterRepository.findById(id).orElseThrow(
-                () -> new RuntimeException("can't find character by id " + id));
+                () -> new EntityNotFoundException("Can't find character by id " + id));
         return characterMapper.toDto(character);
     }
 
