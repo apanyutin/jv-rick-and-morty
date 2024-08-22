@@ -19,17 +19,12 @@ public class CharacterServiceImpl implements CharacterService {
 
     @Override
     public void saveAll(List<RickandmortyapiCharacterDto> requestDtos) {
-        List<Character> characters = requestDtos.stream()
-                        .map(characterMapper::toModel)
-                                .toList();
-        characterRepository.saveAll(characters);
+        characterRepository.saveAll(characterMapper.toModelList(requestDtos));
     }
 
     @Override
     public List<CharacterDto> getAll() {
-        return characterRepository.findAll().stream()
-                .map(characterMapper::toDto)
-                .toList();
+        return characterMapper.toDtoList(characterRepository.findAll());
     }
 
     @Override
@@ -41,9 +36,7 @@ public class CharacterServiceImpl implements CharacterService {
 
     @Override
     public List<CharacterDto> findAllByName(String name) {
-        return characterRepository.findAllByName(name).stream()
-                .map(characterMapper::toDto)
-                .toList();
+        return characterMapper.toDtoList(characterRepository.findAllByName(name));
     }
 
     @Override

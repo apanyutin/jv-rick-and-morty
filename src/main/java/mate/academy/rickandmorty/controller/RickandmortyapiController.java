@@ -7,11 +7,13 @@ import lombok.RequiredArgsConstructor;
 import mate.academy.rickandmorty.dto.internal.CharacterDto;
 import mate.academy.rickandmorty.service.CharacterService;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @Tag(name = "Rick and Morty management", description = "Endpoints for managing characters")
 @RestController
+@RequestMapping(value = "/characters")
 @RequiredArgsConstructor
 public class RickandmortyapiController {
     private final CharacterService characterService;
@@ -23,8 +25,8 @@ public class RickandmortyapiController {
     }
 
     @Operation(summary = "Get by name", description = "get all characters by name")
-    @GetMapping("/search/{name}")
-    public List<CharacterDto> getCharactersByName(@PathVariable String name) {
+    @GetMapping("/search")
+    public List<CharacterDto> getCharactersByName(@RequestParam String name) {
         return characterService.findAllByName(name);
     }
 }

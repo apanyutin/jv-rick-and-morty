@@ -33,8 +33,8 @@ public class RickandmortyapiClient {
                 RickandmortyapiResponseDataDto dataDto = objectMapper.readValue(response.body(),
                         RickandmortyapiResponseDataDto.class);
 
-                characters.addAll(dataDto.getResults());
-                url = dataDto.getInfo().next();
+                characters.addAll(dataDto.results());
+                url = dataDto.info().next();
             }
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException("Can't get data from client", e);
